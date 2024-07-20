@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #77aaff 3px solid;
+        }
+        header a {
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+        .login-form, .staff-management {
+            background: #fff;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #ddd;
+        }
+        .login-form input, .staff-management input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .login-form button, .staff-management button {
+            padding: 10px;
+            background: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Staff Management System</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="login-form">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <input type="password" id="password" placeholder="Enter Password" required>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+
+        <div class="staff-management" style="display:none;">
+            <h2>Manage Staff</h2>
+            <form id="staffForm">
+                <input type="text" id="staffName" placeholder="Staff Name" required>
+                <input type="text" id="staffRole" placeholder="Staff Role" required>
+                <button type="submit">Add Staff</button>
+            </form>
+            <ul id="staffList"></ul>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const password = document.getElementById('password').value;
+            if (password === 'yourpassword') {
+                document.querySelector('.login-form').style.display = 'none';
+                document.querySelector('.staff-management').style.display = 'block';
+            } else {
+                alert('Incorrect password!');
+            }
+        });
+
+        document.getElementById('staffForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('staffName').value;
+            const role = document.getElementById('staffRole').value;
+            const li = document.createElement('li');
+            li.textContent = `${name} - ${role}`;
+            document.getElementById('staffList').appendChild(li);
+            document.getElementById('staffForm').reset();
+        });
+    </script>
+</body>
+</html>
